@@ -13,8 +13,8 @@ Módulos: clientes, veículos e ordens de serviço.
 1. Clone o repositório e instale as dependências:
 
 ```bash
-git clone https://github.com/SEU_USUARIO/Projeto-2-POO.git
-cd Projeto-2-POO
+git clone https://github.com/SEU_USUARIO/Trabalho-Oficina-POO.git
+cd Trabalho-Oficina-POO
 npm install
 ```
 
