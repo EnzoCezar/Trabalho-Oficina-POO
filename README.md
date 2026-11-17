@@ -52,3 +52,38 @@ A API fica disponível em http://localhost:3000.
 | ordens-servico | POST | /ordens-servico |
 | ordens-servico | PATCH | /ordens-servico/:id/valor, /ordens-servico/:id/status |
 | ordens-servico | DELETE | /ordens-servico/:id |
+
+## Consultas
+
+curl http://localhost:3000/ordens-servico
+curl http://localhost:3000/veiculos/1
+
+## Testes
+
+Os comandos abaixo usam `\"` nas aspas do JSON, que é o formato do cmd do Windows. Rode o seed antes (`npx ts-node src/seed.ts`) e deixe a API ligada.
+
+Cadastrar um cliente e um veículo:
+
+```bash
+curl -X POST http://localhost:3000/clientes -H "Content-Type: application/json" -d "{\"nome\":\"Ana Costa\",\"telefone\":\"(66) 99999-0000\"}"
+```
+
+```bash
+curl -X POST http://localhost:3000/veiculos -H "Content-Type: application/json" -d "{\"placa\":\"mno5p67\",\"modelo\":\"VW Gol\",\"ano\":2017,\"clienteId\":4}"
+```
+
+Testar a regra principal. A ordem 3 não tem valor, então este comando deve falhar com 400:
+
+```bash
+curl -X PATCH http://localhost:3000/ordens-servico/3/status -H "Content-Type: application/json" -d "{\"status\":\"CONCLUIDA\"}"
+```
+
+Defina o valor e tente de novo, agora com sucesso:
+
+```bash
+curl -X PATCH http://localhost:3000/ordens-servico/3/valor -H "Content-Type: application/json" -d "{\"valor\":420.00}"
+```
+
+```bash
+curl -X PATCH http://localhost:3000/ordens-servico/3/status -H "Content-Type: application/json" -d "{\"status\":\"CONCLUIDA\"}"
+```
